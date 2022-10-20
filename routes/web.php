@@ -22,6 +22,10 @@ Auth::routes();
 Route::resource('users', \App\Http\Controllers\UserController::class)
     ->middleware('auth');
 
+Route::resource('books', \App\Http\Controllers\BookController::class)
+    ->middleware('auth');
+
+
 Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');

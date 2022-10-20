@@ -229,7 +229,23 @@ return [
             'url'  => '/users',
             'icon'  => 'fa fa-users',
         ],
+        [
+            'text' => 'Book',
+            'url' => '/books',
+            'icon' => 'fa fa-book'
+        ],
+        [
+            'text' => 'Transaction',
+            'url' => '/transactions',
+            'icon' => 'fa fa-people-arrows'
+        ],
+        [
+            'text' => 'Search',
+            'url' => '/search',
+            'icon' => 'fas fa-search'
+        ]
     ],
+
 
     /*
     |--------------------------------------------------------------------------
