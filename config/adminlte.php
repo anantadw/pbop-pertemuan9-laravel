@@ -224,26 +224,26 @@ return [
     */
 
     'menu' => [
+        // [
+        //     'text' => 'User',
+        //     'url'  => '/users',
+        //     'icon'  => 'fa fa-users',
+        // ],
         [
-            'text' => 'User',
-            'url'  => '/users',
-            'icon'  => 'fa fa-users',
+            'text' => 'Dashboard',
+            'url' => '/dashboard',
+            'icon' => 'fas fa-tachometer-alt mr-2'
         ],
         [
-            'text' => 'Book',
+            'text' => 'Books',
             'url' => '/books',
-            'icon' => 'fa fa-book'
+            'icon' => 'fa fa-book mr-2'
         ],
-        [
-            'text' => 'Transaction',
-            'url' => '/transactions',
-            'icon' => 'fa fa-people-arrows'
-        ],
-        [
-            'text' => 'Search',
-            'url' => '/search',
-            'icon' => 'fas fa-search'
-        ]
+        // [
+        //     'text' => 'Transaction',
+        //     'url' => '/transactions',
+        //     'icon' => 'fa fa-people-arrows'
+        // ]
     ],
 
 
@@ -302,31 +302,31 @@ return [
                 ],
             ],
         ],
-        'Select2' => [
-            'active' => false,
-            'files' => [
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
-                ],
-                [
-                    'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
-                ],
-            ],
-        ],
-        'Chartjs' => [
-            'active' => false,
-            'files' => [
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
-                ],
-            ],
-        ],
+        // 'Select2' => [
+        //     'active' => false,
+        //     'files' => [
+        //         [
+        //             'type' => 'js',
+        //             'asset' => false,
+        //             'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
+        //         ],
+        //         [
+        //             'type' => 'css',
+        //             'asset' => false,
+        //             'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
+        //         ],
+        //     ],
+        // ],
+        // 'Chartjs' => [
+        //     'active' => false,
+        //     'files' => [
+        //         [
+        //             'type' => 'js',
+        //             'asset' => false,
+        //             'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
+        //         ],
+        //     ],
+        // ],
         'Sweetalert2' => [
             'active' => true,
             'files' => [
@@ -342,21 +342,21 @@ return [
                 ],
             ],
         ],
-        'Pace' => [
-            'active' => false,
-            'files' => [
-                [
-                    'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-center-radar.min.css',
-                ],
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
-                ],
-            ],
-        ],
+        // 'Pace' => [
+        //     'active' => false,
+        //     'files' => [
+        //         [
+        //             'type' => 'css',
+        //             'asset' => false,
+        //             'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-center-radar.min.css',
+        //         ],
+        //         [
+        //             'type' => 'js',
+        //             'asset' => false,
+        //             'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
+        //         ],
+        //     ],
+        // ],
     ],
 
     /*

@@ -7,11 +7,11 @@
 @stop
 
 @section('content')
-    <div class="row">
-        <div class="col-12">
+    <div class="row justify-content-center">
+        <div class="col-10">
             <div class="card">
                 <div class="card-body">
-                    <p class="mb-0">You are logged in!</p>
+                    <p class="mb-0">Selamat datang, {{ Auth::user()->name }}!</p>
                 </div>
             </div>
         </div>
