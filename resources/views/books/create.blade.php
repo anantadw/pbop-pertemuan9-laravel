@@ -31,15 +31,18 @@
                         </div>
                         <div class="form-group">
                             <label for="tahun_terbit">Tahun terbit</label>
-                            <input type="number" min="1900" max="{{ date('Y') }}" class="form-control" id="tahun_terbit" placeholder="Masukkan tahun terbit (YYYY)" name="tahun_terbit">
+                            <input type="number" min="1900" max="{{ date('Y') }}" class="form-control @error('tahun_terbit') is-invalid @enderror" id="tahun_terbit" placeholder="Masukkan tahun terbit (YYYY)" name="tahun_terbit">
+                            @error('tahun_terbit') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="form-group">
                             <label for="jumlah_buku">Jumlah Buku</label>
-                            <input type="number" min="0" max="99" class="form-control" id="jumlah_buku" placeholder="Masukkan jumlah buku buku" name="jumlah_buku">
+                            <input type="number" min="0" max="99" class="form-control @error('jumlah_buku') is-invalid @enderror" id="jumlah_buku" placeholder="Masukkan jumlah buku buku" name="jumlah_buku">
+                            @error('jumlah_buku') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="form-group">
                             <label for="deskripsi">Deskripsi</label>
-                            <textarea class="form-control" name="deskripsi" id="deskripsi" cols="30" rows="5" placeholder="Deskripsi buku"></textarea>
+                            <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" id="deskripsi" cols="30" rows="5" placeholder="Deskripsi buku"></textarea>
+                            @error('deskripsi') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                     </div>
 

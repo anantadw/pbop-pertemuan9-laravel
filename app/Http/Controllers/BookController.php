@@ -49,8 +49,22 @@ class BookController extends Controller
             'deskripsi' => 'required'
         ]);
 
-        return $request->except('_token');
-        // Book::create($request->except('_token'));
+        try {
+            $book = new Book();
+            $book->judul = $request->post('judul');
+            $book->pengarang = $request->post('pengarang');
+            $book->penerbit = $request->post('penerbit');
+            $book->tahun_terbit = $request->post('tahun_terbit');
+            $book->jumlah_buku = $request->post('jumlah_buku');
+            $book->deskripsi = $request->post('deskripsi');
+            $book->gambar = '';
+            $book->save();
+
+            return redirect()->route('books.index')->with('success_message', 'Buku berhasil ditambahkan!');
+        } catch (Exception $e) {
+            Log::error($e);
+            return redirect()->route('books.index')->with('error_message', 'Terjadi kesalaham. Buku gagal ditambahkan!');
+        }
     }
 
     /**
