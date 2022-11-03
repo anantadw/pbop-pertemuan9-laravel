@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class BookController extends Controller
 {
@@ -38,7 +40,17 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'judul' => 'required|unique:books,judul',
+            'pengarang' => 'required',
+            'penerbit' => 'required',
+            'tahun_terbit' => 'required',
+            'jumlah_buku' => 'required|numeric',
+            'deskripsi' => 'required'
+        ]);
+
+        return $request->except('_token');
+        // Book::create($request->except('_token'));
     }
 
     /**

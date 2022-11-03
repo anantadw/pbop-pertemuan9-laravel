@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <form action="{{route('books.store')}}" method="post">
+    <form action="{{ route('books.store') }}" method="post">
         @csrf
         <div class="row justify-content-center">
             <div class="col-lg-6">
@@ -31,11 +31,15 @@
                         </div>
                         <div class="form-group">
                             <label for="tahun_terbit">Tahun terbit</label>
-                            <input type="text" class="form-control" id="tahun_terbit" placeholder="Masukkan tahun terbit" name="tahun_terbit">
+                            <input type="number" min="1900" max="{{ date('Y') }}" class="form-control" id="tahun_terbit" placeholder="Masukkan tahun terbit (YYYY)" name="tahun_terbit">
                         </div>
                         <div class="form-group">
-                            <label for="jumlah">Jumlah</label>
-                            <input type="number" class="form-control" id="jumlah" placeholder="Masukkan jumlah buku" name="jumlah_buku">
+                            <label for="jumlah_buku">Jumlah Buku</label>
+                            <input type="number" min="0" max="99" class="form-control" id="jumlah_buku" placeholder="Masukkan jumlah buku buku" name="jumlah_buku">
+                        </div>
+                        <div class="form-group">
+                            <label for="deskripsi">Deskripsi</label>
+                            <textarea class="form-control" name="deskripsi" id="deskripsi" cols="30" rows="5" placeholder="Deskripsi buku"></textarea>
                         </div>
                     </div>
 
