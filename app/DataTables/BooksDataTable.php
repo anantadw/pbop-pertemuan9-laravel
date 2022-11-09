@@ -21,7 +21,22 @@ class BooksDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'books.action');
+            ->addColumn('action', function($row) {
+                $actionButton = '<button type="button" class="btn btn-info mb-2 mb-xl-0">
+                                    <i class="fas fa-info mr-1"></i>
+                                    Detail
+                                </button>
+                                <button type="button" class="btn btn-warning mb-2 mb-xl-0">
+                                    <i class="fas fa-edit mr-1"></i>
+                                    Ubah
+                                </button>
+                                <button type="button" class="btn btn-danger">
+                                    <i class="fas fa-trash mr-1"></i>
+                                    Hapus
+                                </button>';
+
+                return $actionButton;
+            });
     }
 
     /**
@@ -46,15 +61,15 @@ class BooksDataTable extends DataTable
                     ->setTableId('books-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    // ->dom('Bfrtip')
-                    ->orderBy(1);
-                    // ->buttons(
-                    //     Button::make('create'),
-                    //     Button::make('export'),
-                    //     Button::make('print'),
-                    //     Button::make('reset'),
-                    //     Button::make('reload')
-                    // );
+                    ->dom('Bfrtip')
+                    ->orderBy(0)
+                    ->buttons(
+                        Button::make('create'),
+                        Button::make('export'),
+                        Button::make('print'),
+                        Button::make('reset'),
+                        Button::make('reload')
+                    );
     }
 
     /**
@@ -65,16 +80,16 @@ class BooksDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            // Column::computed('action')
-            //       ->exportable(false)
-            //       ->printable(false)
-            //       ->width(60)
-            //       ->addClass('text-center'),
             Column::make('id'),
             Column::make('judul'),
             Column::make('pengarang'),
             Column::make('tahun_terbit'),
             Column::make('jumlah_buku'),
+            Column::computed('action')
+                  ->exportable(false)
+                  ->printable(false)
+                  ->width(350)
+                  ->addClass('text-center'),
             // Column::make('created_at'),
             // Column::make('updated_at'),
         ];

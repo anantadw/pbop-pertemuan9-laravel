@@ -14,7 +14,13 @@ class BookFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'judul' => $this->faker->sentence(),
+            'pengarang' => $this->faker->name(),
+            'penerbit' => $this->faker->word(),
+            'tahun_terbit' => $this->faker->numberBetween(2000, 2022),
+            'jumlah_buku' => $this->faker->randomNumber(2, false),
+            'deskripsi' => $this->faker->paragraph(),
+            'gambar' => ''
         ];
     }
 }
