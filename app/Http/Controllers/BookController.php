@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\BooksDataTable;
 use App\Models\Book;
 use Exception;
 use Illuminate\Http\Request;
@@ -14,13 +15,14 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(BooksDataTable $dataTable)
     {
-        $books = Book::all();
+        // $books = Book::all();
 
-        return view('books.index', [
-            'books' => $books
-        ]);
+        // return view('books.index', [
+        //     'books' => $books
+        // ]);
+        return $dataTable->render('books.index');
     }
 
     /**

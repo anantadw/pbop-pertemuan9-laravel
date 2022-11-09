@@ -22,7 +22,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <table class="table table-hover table-bordered table-stripped" id="example2">
+                            {{-- <table class="table table-hover table-bordered table-stripped" id="example2">
                                 <thead>
                                     <tr>
                                         <th>No.</th>
@@ -58,7 +58,8 @@
                                     </tr>
                                 @endforeach
                                 </tbody>
-                            </table>
+                            </table> --}}
+                            {{ $dataTable->table() }}
                         </div>
                     </div>
                 </div>
@@ -66,3 +67,7 @@
         </div>
     </div>
 @stop
+
+@push('js')
+    {{ $dataTable->scripts() }}
+@endpush
