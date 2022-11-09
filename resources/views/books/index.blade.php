@@ -42,22 +42,26 @@
                                         <td>{{ $book->tahun_terbit }}</td>
                                         <td>{{ $book->jumlah_buku }}</td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-info mb-2 mb-xl-0">
+                                            {{-- <button type="button" class="btn btn-info mb-2 mb-xl-0">
                                                 <i class="fas fa-info mr-1"></i>
                                                 Detail
-                                            </button>
-                                            <button type="button" class="btn btn-warning mb-2 mb-xl-0">
-                                                <i class="fas fa-edit mr-1"></i>
-                                                Ubah
-                                            </button>
-                                            <button type="button" class="btn btn-danger">
-                                                <i class="fas fa-trash mr-1"></i>
-                                                Hapus
-                                            </button>
+                                            </button> --}}
+                                            <a href="{{route('books.show', $book)}}" class="btn btn-info mb-2 mb-xl-0">
+                                                Detail
+                                            </a>
+                                            <a href="{{route('books.edit', $book)}}" class="btn btn-warning mb-2 mb-xl-0">
+                                                Edit
+                                            </a>
+                                            <form action="{{route('books.destroy', $book)}}" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger mb-2 mb-xl-0" >Delete</button>
+                                            </form>
+                          
                                         </td>
                                     </tr>
                                 @endforeach
-                                </tbody>
+                                </body>
                             </table>
                         </div>
                     </div>
