@@ -119,3 +119,4 @@ class UserController extends Controller
             ->with('success_message', 'Berhasil menghapus user');
     }
 }
+

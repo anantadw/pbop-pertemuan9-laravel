@@ -77,7 +77,9 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        return view('books.update');
+        $book = Book::find($id);
+        // dd($book)
+        return view('books.show', compact('book'));
     }
 
     /**
@@ -88,7 +90,9 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        return view('books.delete');
+        $book = Book::find($id);
+        // dd($book)
+        return view('books.edit', compact('book'));
     }
 
     /**
@@ -100,7 +104,18 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'judul' => 'required',
+            'pengarang' => 'required',
+            'penerbit' => 'required',
+            'tahun_terbit' => 'required',
+            'jumlah_buku' => 'required|numeric',
+            'deskripsi' => 'required'
+        ]);
+        $book = Book::find($id)->update($request->all());
+
+         return redirect()->route('books.index')
+            ->with('success_message', 'Berhasil mengupdate buku');
     }
 
     /**
@@ -111,7 +126,10 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $book = Book::find($id);
+        $book->delete();
+        return redirect()->route('books.index')
+            ->with('success_message', 'Berhasil menghapus buku');
     }
 
     public function generatePDF()
