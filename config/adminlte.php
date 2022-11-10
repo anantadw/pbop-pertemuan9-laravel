@@ -236,8 +236,24 @@ return [
         ],
         [
             'text' => 'Books',
-            'url' => '/books',
-            'icon' => 'fa fa-book mr-2'
+            'url' => '/',
+            'icon' => 'fa fa-book mr-2',
+            'submenu' => [
+                [
+                    'text' => 'Menu',
+                    'shift' => 'ml-4',
+                    'url' => '/books',
+                    'icon' => 'fas fa-fw fa-tags mr-2',
+                    'active' => ['./books', './books/*'],
+                    
+                ],
+                [
+                    'text' => 'Create',
+                    'shift' => 'ml-4',
+                    'url' => '/books/create mr-2',
+                    'icon' => 'fas fa-fw fa-tags'
+                ],
+            ]
         ],
         // [
         //     'text' => 'Transaction',
