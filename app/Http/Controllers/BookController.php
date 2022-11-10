@@ -113,4 +113,22 @@ class BookController extends Controller
     {
         //
     }
+
+    public function generatePDF()
+    {
+        // return $dataTable->render('books.pdf');
+
+        $mpdf = new \Mpdf\Mpdf();
+        $html = '';
+        $data = Book::limit(10)->get();
+        return view('books.pdf', [
+            'books' => $data
+        ]);
+        $html = view('books.pdf', [
+            'books' => $data
+        ]);
+
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+    }
 }
