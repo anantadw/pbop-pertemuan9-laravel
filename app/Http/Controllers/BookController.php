@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\BooksDataTable;
 use App\Models\Book;
 use Exception;
 use Illuminate\Http\Request;
@@ -14,13 +15,14 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(BooksDataTable $dataTable)
     {
-        $books = Book::all();
+        // $books = Book::all();
 
-        return view('books.index', [
-            'books' => $books
-        ]);
+        // return view('books.index', [
+        //     'books' => $books
+        // ]);
+        return $dataTable->render('books.index');
     }
 
     /**
@@ -128,5 +130,23 @@ class BookController extends Controller
         $book->delete();
         return redirect()->route('books.index')
             ->with('success_message', 'Berhasil menghapus buku');
+    }
+
+    public function generatePDF()
+    {
+        // return $dataTable->render('books.pdf');
+
+        $mpdf = new \Mpdf\Mpdf();
+        $html = '';
+        $data = Book::limit(10)->get();
+        return view('books.pdf', [
+            'books' => $data
+        ]);
+        $html = view('books.pdf', [
+            'books' => $data
+        ]);
+
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
     }
 }

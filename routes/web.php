@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers;
+use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +22,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/dashboard', function() {
-    return view('home');
-})->name('home')->middleware('auth');
+Route::middleware(['auth'])->group(function() {
+    Route::get('/dashboard', function () {
+        return view('home');
+    })->name('home');
 
-// Route::resource('users', \App\Http\Controllers\UserController::class)->middleware('auth');
-
-Route::resource('books', \App\Http\Controllers\BookController::class)->middleware('auth');
+    // Route::resource('users', \App\Http\Controllers\UserController::class)->middleware('auth');
+    Route::get('/books/generate-pdf', [BookController::class, 'generatePDF'])->name('books.generate-pdf');
+    Route::resource('books', BookController::class);
+});
