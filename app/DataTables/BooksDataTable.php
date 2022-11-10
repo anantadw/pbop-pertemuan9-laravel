@@ -22,18 +22,22 @@ class BooksDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('action', function($row) {
-                $actionButton = '<button type="button" class="btn btn-info mb-2 mb-xl-0">
+                $actionButton = '<a href="' . route('books.show', $row) . '" class="btn btn-info mb-2 mb-xl-0">
                                     <i class="fas fa-info mr-1"></i>
                                     Detail
-                                </button>
-                                <button type="button" class="btn btn-warning mb-2 mb-xl-0">
+                                </a>
+                                <a href="' . route('books.edit', $row) . '" class="btn btn-warning mb-2 mb-xl-0">
                                     <i class="fas fa-edit mr-1"></i>
-                                    Ubah
-                                </button>
-                                <button type="button" class="btn btn-danger">
-                                    <i class="fas fa-trash mr-1"></i>
-                                    Hapus
-                                </button>';
+                                    Edit
+                                </a>
+                                <form action="' . route('books.destroy', $row) . '" method="POST" class="d-inline">
+                                    <input type="hidden" name="_token" value=" ' . csrf_token() . ' ">
+                                    <input type="hidden" name="_method" value="delete">
+                                    <button type="submit" class="btn btn-danger mb-2 mb-xl-0">
+                                        <i class="fas fa-trash mr-1"></i>
+                                        Delete
+                                    </button>
+                                </form>';
 
                 return $actionButton;
             });

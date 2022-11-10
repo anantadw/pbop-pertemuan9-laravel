@@ -48,10 +48,10 @@
                                         <td>{{ $book->tahun_terbit }}</td>
                                         <td>{{ $book->jumlah_buku }}</td>
                                         <td class="text-center">
-                                            {{-- <button type="button" class="btn btn-info mb-2 mb-xl-0">
+                                            <button type="button" class="btn btn-info mb-2 mb-xl-0">
                                                 <i class="fas fa-info mr-1"></i>
                                                 Detail
-                                            </button> --}}
+                                            </button>
                                             <a href="{{route('books.show', $book)}}" class="btn btn-info mb-2 mb-xl-0">
                                                 Detail
                                             </a>

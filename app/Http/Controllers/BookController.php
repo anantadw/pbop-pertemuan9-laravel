@@ -64,7 +64,7 @@ class BookController extends Controller
 
             return redirect()->route('books.index')->with('success_message', 'Buku berhasil ditambahkan!');
         } catch (Exception $e) {
-            Log::error($e);
+            Log::error($e->getMessage());
             return redirect()->route('books.index')->with('error_message', 'Terjadi kesalaham. Buku gagal ditambahkan!');
         }
     }
@@ -112,10 +112,16 @@ class BookController extends Controller
             'jumlah_buku' => 'required|numeric',
             'deskripsi' => 'required'
         ]);
-        $book = Book::find($id)->update($request->all());
 
-         return redirect()->route('books.index')
-            ->with('success_message', 'Berhasil mengupdate buku');
+        try {
+            $book = Book::find($id)->update($request->all());
+            return redirect()->route('books.index')
+               ->with('success_message', 'Berhasil mengupdate buku');
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('books.index')->with('error_message', 'Terjadi kesalaham. Buku gagal diupdate!');
+        }
+
     }
 
     /**
@@ -138,15 +144,15 @@ class BookController extends Controller
 
         $mpdf = new \Mpdf\Mpdf();
         $html = '';
-        $data = Book::limit(10)->get();
-        return view('books.pdf', [
-            'books' => $data
-        ]);
+        $data = Book::limit(100)->get();
+        // return view('books.pdf', [
+        //     'books' => $data
+        // ]);
         $html = view('books.pdf', [
             'books' => $data
         ]);
 
         $mpdf->WriteHTML($html);
-        $mpdf->Output();
+        $mpdf->Output('DataBuku_' . date('d-m-Y') . '.pdf', 'D');
     }
 }

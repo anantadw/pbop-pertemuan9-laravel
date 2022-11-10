@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Tambah Buku')
+@section('title', 'Detail Buku')
 
 @section('content_header')
-    <h1 class="m-0 text-dark text-center">Tambah Buku</h1>
+    <h1 class="m-0 text-dark text-center">Detail Buku</h1>
 @stop
 
 @section('content')
@@ -14,47 +14,39 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="judul">Judul</label>
-                            <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" placeholder="Masukkan judul buku" name="judul" value="{{$book->judul}}" disabled>
-                            @error('judul') <span class="text-danger">{{$message}}</span> @enderror
+                            <input type="text" class="form-control" id="judul" value="{{$book->judul}}" disabled>
                         </div>
-
                         <div class="form-group">
                             <label for="pengarang">Pengarang</label>
-                            <input type="text" class="form-control @error('pengarang') is-invalid @enderror" id="pengarang" name="pengarang" placeholder="Masukkan pengarang" 
+                            <input type="text" class="form-control" id="pengarang"
                             value="{{$book->pengarang}}" disabled>
-                            {{-- name="pengarang" value="{{old('pengarang')}}"> --}}
-                            @error('pengarang') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="form-group">
                             <label for="penerbit">Penerbit</label>
-                            <input type="text" class="form-control @error('penerbit') is-invalid @enderror" id="penerbit" placeholder="Masukkan penerbit" name="penerbit"
+                            <input type="text" class="form-control" id="penerbit"
                             value="{{$book->penerbit}}" disabled>
-                            @error('penerbit') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="form-group">
                             <label for="tahun_terbit">Tahun terbit</label>
-                            <input type="number" min="1900" max="{{ date('Y') }}" class="form-control @error('tahun_terbit') is-invalid @enderror" id="tahun_terbit" placeholder="Masukkan tahun terbit (YYYY)" name="tahun_terbit"
+                            <input type="number" min="1900" max="{{ date('Y') }}" class="form-control" id="tahun_terbit"
                             value="{{$book->tahun_terbit}}"disabled>
-                            @error('tahun_terbit') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="form-group">
                             <label for="jumlah_buku">Jumlah Buku</label>
-                            <input type="number" min="0" max="99" class="form-control @error('jumlah_buku') is-invalid @enderror" id="jumlah_buku" placeholder="Masukkan jumlah buku buku" name="jumlah_buku"
+                            <input type="number" min="0" max="99" class="form-control" id="jumlah_buku"
                             value="{{$book->jumlah_buku}}"disabled>
-                            @error('jumlah_buku') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="form-group">
                             <label for="deskripsi">Deskripsi</label>
-                            <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" id="deskripsi" cols="30" rows="5" placeholder="Deskripsi buku" disabled>{{$book->deskripsi}}</textarea>
-                            @error('deskripsi') <span class="text-danger">{{$message}}</span> @enderror
+                            <textarea class="form-control" name="deskripsi" id="deskripsi" cols="30" rows="5" disabled>{{$book->deskripsi}}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="created_at">Ditambahkan pada</label>
+                            <input type="text" class="form-control" id="created_at"
+                            value="{{$book->created_at}}" disabled>
                         </div>
                     </div>
-{{-- 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success">
-                            <i class="fas fa-plus mr-2"></i>
-                            Simpan --}}
-                        </button>
                         <a href="{{route('books.index')}}" class="btn btn-secondary float-right">
                             <i class="fas fa-arrow-left mr-2"></i>
                             Kembali

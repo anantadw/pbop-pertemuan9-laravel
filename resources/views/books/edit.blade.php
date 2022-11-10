@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Tambah Buku')
+@section('title', 'Ubah Buku')
 
 @section('content_header')
-    <h1 class="m-0 text-dark text-center">Tambah Buku</h1>
+    <h1 class="m-0 text-dark text-center">Ubah Buku</h1>
 @stop
 
 @section('content')
@@ -53,9 +53,9 @@
                     </div>
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success">
-                            <i class="fas fa-plus mr-2"></i>
-                            Simpan
+                        <button type="submit" class="btn btn-warning">
+                            <i class="fas fa-edit mr-2"></i>
+                            Perbarui
                         </button>
                         <a href="{{route('books.index')}}" class="btn btn-secondary float-right">
                             <i class="fas fa-arrow-left mr-2"></i>
