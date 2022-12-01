@@ -46,16 +46,16 @@
                         </div>
                         <div class="form-group">
                             <label for="gambar">Upload Gambar</label>
-                            <input type="file" class="form-control h-5" name='gambar' id="gambar">
+                            <input type="file" class="form-control h-5" name='gambar'>
                             @error('gambar')<spam class="text-danger">{{$message}}</spam>@enderror
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn btn-success float-right">
                             <i class="fas fa-plus mr-2"></i>
                             Simpan
                         </button>
-                        <a href="{{route('books.index')}}" class="btn btn-secondary float-right">
+                        <a href="{{route('books.index')}}" class="btn btn-secondary">
                             <i class="fas fa-arrow-left mr-2"></i>
                             Kembali
                         </a>
