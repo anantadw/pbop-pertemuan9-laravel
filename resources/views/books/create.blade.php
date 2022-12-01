@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <form action="{{ route('books.store') }}" method="post">
+    <form action="{{ route('books.store') }}" method="post" enctype="multi-part/form-data" enctype="multipart/form-data">
         @csrf
         <div class="row justify-content-center">
             <div class="col-lg-6">
@@ -44,8 +44,12 @@
                             <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" id="deskripsi" cols="30" rows="5" placeholder="Deskripsi buku"></textarea>
                             @error('deskripsi') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
+                        <div class="form-group">
+                            <label for="gambar">Upload Gambar</label>
+                            <input type="file" class="form-control h-5" name='gambar' id="gambar">
+                            @error('gambar')<spam class="text-danger">{{$message}}</spam>@enderror
+                        </div>
                     </div>
-
                     <div class="card-footer">
                         <button type="submit" class="btn btn-success">
                             <i class="fas fa-plus mr-2"></i>

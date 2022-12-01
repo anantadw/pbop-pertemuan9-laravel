@@ -31,3 +31,5 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/books/generate-pdf', [BookController::class, 'generatePDF'])->name('books.generate-pdf');
     Route::resource('books', BookController::class);
 });
+
+Route::get('gambar/{filename}', [BookController::class, 'displayGambar'])->name('gambar.displayGambar');

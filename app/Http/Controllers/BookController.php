@@ -48,9 +48,10 @@ class BookController extends Controller
             'penerbit' => 'required',
             'tahun_terbit' => 'required',
             'jumlah_buku' => 'required|numeric',
-            'deskripsi' => 'required'
+            'deskripsi' => 'required',
+            'gambar' => 'required|mimes:png,jpg,jpeg|max:2048'
         ]);
-
+        
         try {
             $book = new Book();
             $book->judul = $request->post('judul');
@@ -59,7 +60,7 @@ class BookController extends Controller
             $book->tahun_terbit = $request->post('tahun_terbit');
             $book->jumlah_buku = $request->post('jumlah_buku');
             $book->deskripsi = $request->post('deskripsi');
-            $book->gambar = '';
+            $book->gambar = $request->post('gambar');
             $book->save();
 
             return redirect()->route('books.index')->with('success_message', 'Buku berhasil ditambahkan!');
