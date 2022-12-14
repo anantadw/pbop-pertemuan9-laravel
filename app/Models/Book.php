@@ -20,6 +20,7 @@ class Book extends Model
         'penerbit',
         'tahun_terbit',
         'jumlah_buku',
-        'deskripsi'
+        'deskripsi',
+        'gambar'
     ];
 }

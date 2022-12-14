@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\TestQueueEmails;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,5 @@ Route::middleware(['auth'])->group(function() {
 });
 
 Route::get('gambar/{filename}', [BookController::class, 'displayGambar'])->name('gambar.displayGambar');
+
+Route::get('sending-queue-emails', [TestQueueEmails::class,'sendTestEmails']);

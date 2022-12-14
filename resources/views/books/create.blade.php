@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <form action="{{ route('books.store') }}" method="post" enctype="multi-part/form-data" enctype="multipart/form-data">
+    <form action="{{ route('books.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row justify-content-center">
             <div class="col-lg-6">

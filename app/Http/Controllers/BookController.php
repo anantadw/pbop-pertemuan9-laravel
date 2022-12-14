@@ -7,6 +7,7 @@ use App\Models\Book;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -42,6 +43,7 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->file('gambar')->hashName());
         $request->validate([
             'judul' => 'required|unique:books,judul',
             'pengarang' => 'required',
@@ -53,16 +55,26 @@ class BookController extends Controller
         ]);
         
         try {
-            $book = new Book();
-            $book->judul = $request->post('judul');
-            $book->pengarang = $request->post('pengarang');
-            $book->penerbit = $request->post('penerbit');
-            $book->tahun_terbit = $request->post('tahun_terbits');
-            $book->jumlah_buku = $request->post('jumlah_buku');
-            $book->deskripsi = $request->post('deskripsi');
-            $book->gambar = $request->file('gambar')->store('images');
-            dd($book);
-            $book->save();
+            // $book = new Book();
+            // upload image to storage folder and get the path to store in database
+            Storage::disk('public')->put('books', $request->file('gambar'));
+            // $book->judul = $request->post('judul');
+            // $book->pengarang = $request->post('pengarang');
+            // $book->penerbit = $request->post('penerbit');
+            // $book->tahun_terbit = $request->post('tahun_terbits');
+            // $book->jumlah_buku = $request->post('jumlah_buku');
+            // $book->deskripsi = $request->post('deskripsi');
+            // $book->gambar = $request->file('gambar')->hashName();
+            // $book->save();
+            Book::create([
+                'judul' => $request->judul,
+                'gambar' => $request->file('gambar')->hashName(),
+                'pengarang' => $request->pengarang,
+                'deskripsi' => $request->deskripsi,
+                'penerbit' => $request->penerbit,
+                'tahun_terbit' => $request->tahun_terbit,
+                'jumlah_buku' => $request->jumlah_buku,
+            ]);
             
 
             return redirect()->route('books.index')->with('success_message', 'Buku berhasil ditambahkan!');
