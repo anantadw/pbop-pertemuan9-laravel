@@ -20,7 +20,7 @@ class BookFactory extends Factory
             'tahun_terbit' => $this->faker->numberBetween(2000, 2022),
             'jumlah_buku' => $this->faker->randomNumber(2, false),
             'deskripsi' => $this->faker->paragraph(),
-            'gambar' => ''
+            'gambar' => 'default.jpg'
         ];
     }
 }

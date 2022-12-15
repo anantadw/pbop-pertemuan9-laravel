@@ -239,11 +239,11 @@ return [
             'url' => '/books',
             'icon' => 'fa fa-book mr-2'
         ],
-        // [
-        //     'text' => 'Transaction',
-        //     'url' => '/transactions',
-        //     'icon' => 'fa fa-people-arrows'
-        // ]
+        [
+            'text' => 'Transaction',
+            'url' => '/transactions',
+            'icon' => 'fa fa-people-arrows'
+        ]
     ],
 
 

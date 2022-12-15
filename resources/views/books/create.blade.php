@@ -26,22 +26,22 @@
                         </div>
                         <div class="form-group">
                             <label for="penerbit">Penerbit</label>
-                            <input type="text" class="form-control @error('penerbit') is-invalid @enderror" id="penerbit" placeholder="Masukkan penerbit" name="penerbit">
+                            <input type="text" class="form-control @error('penerbit') is-invalid @enderror" id="penerbit" placeholder="Masukkan penerbit" name="penerbit" value="{{old('penerbit')}}">
                             @error('penerbit') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="form-group">
                             <label for="tahun_terbit">Tahun terbit</label>
-                            <input type="number" min="1900" max="{{ date('Y') }}" class="form-control @error('tahun_terbit') is-invalid @enderror" id="tahun_terbit" placeholder="Masukkan tahun terbit (YYYY)" name="tahun_terbit">
+                            <input type="number" min="1900" max="{{ date('Y') }}" class="form-control @error('tahun_terbit') is-invalid @enderror" id="tahun_terbit" placeholder="Masukkan tahun terbit (YYYY)" name="tahun_terbit" value="{{old('tahun_terbit')}}">
                             @error('tahun_terbit') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="form-group">
                             <label for="jumlah_buku">Jumlah Buku</label>
-                            <input type="number" min="0" max="99" class="form-control @error('jumlah_buku') is-invalid @enderror" id="jumlah_buku" placeholder="Masukkan jumlah buku buku" name="jumlah_buku">
+                            <input type="number" min="0" max="99" class="form-control @error('jumlah_buku') is-invalid @enderror" id="jumlah_buku" placeholder="Masukkan jumlah buku buku" name="jumlah_buku" value="{{old('jumlah_buku')}}">
                             @error('jumlah_buku') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="form-group">
                             <label for="deskripsi">Deskripsi</label>
-                            <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" id="deskripsi" cols="30" rows="5" placeholder="Deskripsi buku"></textarea>
+                            <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" id="deskripsi" cols="30" rows="5" placeholder="Deskripsi buku">{{old('deskripsi')}}</textarea>
                             @error('deskripsi') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                     </div>
@@ -59,4 +59,5 @@
                 </div>
             </div>
         </div>
+    </form>
 @stop

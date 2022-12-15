@@ -34,6 +34,7 @@ class BookController extends Controller
     {
         return view('books.create');
     }
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -43,11 +44,11 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'judul' => 'required|unique:books,judul',
-            'pengarang' => 'required',
-            'penerbit' => 'required',
-            'tahun_terbit' => 'required',
-            'jumlah_buku' => 'required|numeric',
+            'judul' => 'required|unique:books,judul|min:5',
+            'pengarang' => 'regex:/^[a-zA-Z.,\s]+$/',
+            'penerbit' => 'regex:/^[a-zA-Z.,\s]+$/',
+            'tahun_terbit' => 'required|digits:4',
+            'jumlah_buku' => 'required|numeric|min:0|max:99',
             'deskripsi' => 'required'
         ]);
 
@@ -105,11 +106,11 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'judul' => 'required',
-            'pengarang' => 'required',
-            'penerbit' => 'required',
-            'tahun_terbit' => 'required',
-            'jumlah_buku' => 'required|numeric',
+            'judul' => 'required|unique:books,judul|min:5',
+            'pengarang' => 'regex:/^[a-zA-Z.,\s]+$/',
+            'penerbit' => 'regex:/^[a-zA-Z.,\s]+$/',
+            'tahun_terbit' => 'required|digits:4',
+            'jumlah_buku' => 'required|numeric|min:0|max:99',
             'deskripsi' => 'required'
         ]);
 

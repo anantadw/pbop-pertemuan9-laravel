@@ -46,6 +46,11 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'borrower' => [
+            'driver' => 'session',
+            'provider' => 'borrowers'
+        ]
     ],
 
     /*
@@ -75,6 +80,11 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        'borrowers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Borrower::class,
+        ]
     ],
 
     /*

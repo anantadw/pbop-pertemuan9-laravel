@@ -1,4 +1,4 @@
-<table class="table table-bordered table-stripped" border="1">
+<table class="table table-bordered table-stripped" style="border: 1px solid black">
     <thead>
         <tr>
             <th>ID</th>

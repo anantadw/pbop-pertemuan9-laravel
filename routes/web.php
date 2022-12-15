@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,11 +24,19 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware(['auth'])->group(function() {
-    Route::get('/dashboard', function () {
+    Route::get('/dashboard', function() {
         return view('home');
     })->name('home');
 
     // Route::resource('users', \App\Http\Controllers\UserController::class)->middleware('auth');
+
     Route::get('/books/generate-pdf', [BookController::class, 'generatePDF'])->name('books.generate-pdf');
     Route::resource('books', BookController::class);
+
+    Route::get('/transactions', [TransactionController::class, 'index'])->name('transactions.index');
+    Route::get('/transactions/create', [TransactionController::class, 'create'])->name('transactions.create');
+    Route::post('/transactions/create', [TransactionController::class, 'store'])->name('transactions.store');
+    Route::get('/transactions/return/{id}', [TransactionController::class, 'return'])->name('transactions.return');
+    Route::post('/transactions/return/{id}', [TransactionController::class, 'finishTransaction'])->name('transactions.finish');
+    // Route::get('/sending-queue-emails', [TestQueueEmails::class, 'sendTestEmails']);
 });
