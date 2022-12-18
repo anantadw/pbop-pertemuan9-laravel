@@ -21,11 +21,11 @@ class BorrowerHistoryDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', function ($row) {
-                $actionButton = '<a href="" class="btn btn-info mb-2 mb-xl-0">
-                                    <i class="fas fa-info mr-1"></i>
-                                    Detail
-                                </a>';
+            ->addColumn('action', function (Transaction $transaction) {
+                $actionButton = '<a href="' . route('borrower.detail', $transaction->id) . '" class="btn btn-info mb-2 mb-xl-0">
+                        <i class="fas fa-info mr-1"></i>
+                        Detail
+                        </a>';
 
                 return $actionButton;
             })

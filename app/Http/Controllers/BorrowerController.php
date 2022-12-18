@@ -7,6 +7,7 @@ use App\DataTables\BorrowerHistoryDataTable;
 use App\Models\Borrower;
 use App\Http\Requests\StoreBorrowerRequest;
 use App\Http\Requests\UpdateBorrowerRequest;
+use App\Models\Transaction;
 
 class BorrowerController extends Controller
 {
@@ -28,6 +29,13 @@ class BorrowerController extends Controller
     public function history(BorrowerHistoryDataTable $dataTable)
     {
         return $dataTable->render('borrower.history');
+    }
+
+    public function detail($id)
+    {
+        $transaction = Transaction::with(['books', 'borrower'])->find($id);
+        // dd($book)
+        return view('borrower.detail', compact('transaction'));
     }
 
     /**

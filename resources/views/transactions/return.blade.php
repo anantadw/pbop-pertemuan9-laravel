@@ -37,6 +37,7 @@
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Rp</span>
                                 <input type="text" class="form-control" readonly id="denda">
+                                <div class="invalid-feedback" id="error-denda"></div>
                             </div>
                         </div>
                     </div>
@@ -58,11 +59,17 @@
 
 @push('js')
     <script>
-        const tanggal_pinjam = new Date($('#tgl_pinjam').val());
-        const tanggal_kembali = new Date($('#tgl_kembali').val());
-        console.log(tanggal_pinjam)
-        console.log(tanggal_kembali)
-        console.log(tanggal_kembali - tanggal_pinjam)
-
+        $('#error-denda').hide()
+        let tanggal_pinjam = new Date($('#tgl_pinjam').val())
+        let tanggal_kembali = new Date((new Date($('#tgl_pinjam').val())).setDate((new Date($('#tgl_pinjam').val())).getDate() + 7))
+        let lama_pinjam = (new Date().getTime() - tanggal_pinjam.getTime()) / (1000 * 3600 * 24)
+        
+        let value = 0
+        if (lama_pinjam > 7) {
+            value = Math.floor(lama_pinjam) * 5000
+            $('#error-denda').show()
+            $('#error-denda').html('Terlambat ' + Math.floor(lama_pinjam) + ' hari')
+        }
+        $('#denda').val(value)
     </script>
 @endpush

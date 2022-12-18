@@ -100,12 +100,12 @@ class TransactionController extends Controller
     public function finishTransaction(Request $request, $id)
     {
         $request->validate([
-            'tgl_dikembalikan' => 'required',
+            'tgl_kembali' => 'required|date',
         ]);
 
         try {
             $transaction = Transaction::find($id);
-            $transaction->tanggal_dikembalikan = $request->post('tgl_dikembalikan');
+            $transaction->tanggal_kembali = $request->post('tgl_kembali');
             $transaction->status = true;
             $transaction->save();
 
@@ -115,5 +115,12 @@ class TransactionController extends Controller
             Log::error($e->getMessage());
             return redirect()->route('transactions.index')->with('error_message', 'Terjadi kesalaham. Transaksi pengembalian gagal.');
         }
+    }
+
+    public function detail($id)
+    {
+        $transaction = Transaction::with(['books', 'borrower'])->find($id);
+        // dd($book)
+        return view('transactions.detail', compact('transaction'));
     }
 }

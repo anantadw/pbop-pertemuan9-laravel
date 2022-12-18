@@ -20,15 +20,7 @@ class BorrowerBooksDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables()
-            ->eloquent($query)
-            ->addColumn('action', function ($row) {
-                $actionButton = '<a href="' . route('books.show', $row) . '" class="btn btn-info mb-2 mb-xl-0">
-                                    <i class="fas fa-info mr-1"></i>
-                                    Detail
-                                </a>';
-
-                return $actionButton;
-            });
+            ->eloquent($query);
     }
 
     /**
@@ -76,11 +68,11 @@ class BorrowerBooksDataTable extends DataTable
             Column::make('judul'),
             Column::make('pengarang'),
             Column::make('tahun_terbit'),
-            Column::computed('action')
-                ->exportable(false)
-                ->printable(false)
-                ->width(350)
-                ->addClass('text-center'),
+            // Column::computed('action')
+            //     ->exportable(false)
+            //     ->printable(false)
+            //     ->width(350)
+            //     ->addClass('text-center'),
         ];
     }
 

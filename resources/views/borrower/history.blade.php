@@ -12,7 +12,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="/vendor/adminlte/dist/css/adminlte.min.css">
 
-  <link rel="stylesheet" href="http://localhost:8000/vendor/datatables/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/vendor/datatables/css/dataTables.bootstrap4.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->

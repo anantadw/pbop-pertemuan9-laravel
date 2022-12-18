@@ -49,10 +49,12 @@ Route::prefix('admin')->middleware(['auth:web'])->group(function() {
     Route::post('/transactions/create', [TransactionController::class, 'store'])->name('transactions.store');
     Route::get('/transactions/return/{id}', [TransactionController::class, 'return'])->name('transactions.return');
     Route::post('/transactions/return/{id}', [TransactionController::class, 'finishTransaction'])->name('transactions.finish');
+    Route::get('/transactions/detail/{id}', [TransactionController::class, 'detail'])->name('transactions.detail');
     // Route::get('/sending-queue-emails', [TestQueueEmails::class, 'sendTestEmails']);
 });
 
 Route::prefix('borrower')->middleware(['auth:borrower'])->group(function() {
     Route::get('/index', [BorrowerController::class, 'index'])->name('borrower.index');
     Route::get('/history', [BorrowerController::class, 'history'])->name('borrower.history');
+    Route::get('/detail/{id}', [BorrowerController::class, 'detail'])->name('borrower.detail');
 });

@@ -39,11 +39,17 @@ class TransactionsDataTable extends DataTable
                 return $badge;
             })
             ->editColumn('action', function(Transaction $transaction) {
-                
-                $actionButton = '<a href="' . route('transactions.return', $transaction->id) . '" class="btn btn-info mb-2 mb-xl-0">
-                                        <i class="fas fa-check-square mr-1"></i>
-                                        Pengembalian
-                                    </a>';
+                if ($transaction->status == false) {
+                    $actionButton = '<a href="' . route('transactions.return', $transaction->id) . '" class="btn btn-info mb-2 mb-xl-0">
+                        <i class="fas fa-check-square mr-1"></i>
+                        Pengembalian
+                        </a>';
+                } else {
+                    $actionButton = '<a href="' . route('transactions.detail', $transaction->id) . '" class="btn btn-info mb-2 mb-xl-0">
+                        <i class="fas fa-info mr-1"></i>
+                        Detail
+                        </a>';
+                }
 
                 return $actionButton;
             })
