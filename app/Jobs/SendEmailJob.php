@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Mail\TestHelloEmail;
+use App\Mail\TransactionEmail;
 use App\Models\Transaction;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -12,19 +12,19 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 
-class TestSendEmail implements ShouldQueue
+class SendEmailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    public $transaction;
+    private $transaction_id;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Transaction $transaction)
+    public function __construct($transaction_id)
     {
-        $this->transaction = $transaction;
+        $this->transaction_id = $transaction_id;
     }
 
     /**
@@ -34,7 +34,8 @@ class TestSendEmail implements ShouldQueue
      */
     public function handle()
     {
-        $email = new TestHelloEmail($this->transaction);
-        Mail::to($this->transaction->email)->send($email);
+        $transaction = Transaction::with(['books', 'borrower'])->find($this->transaction_id);
+        $email = new TransactionEmail($transaction);
+        Mail::to($transaction->borrower->email)->send($email);
     }
 }

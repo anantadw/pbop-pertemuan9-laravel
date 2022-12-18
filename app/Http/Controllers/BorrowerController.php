@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\BorrowerBooksDataTable;
+use App\DataTables\BorrowerHistoryDataTable;
 use App\Models\Borrower;
 use App\Http\Requests\StoreBorrowerRequest;
 use App\Http\Requests\UpdateBorrowerRequest;
@@ -13,9 +15,19 @@ class BorrowerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(BorrowerBooksDataTable $dataTable)
     {
-        //
+        return $dataTable->render('borrower.index');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function history(BorrowerHistoryDataTable $dataTable)
+    {
+        return $dataTable->render('borrower.history');
     }
 
     /**

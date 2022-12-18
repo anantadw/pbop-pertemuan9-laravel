@@ -2,15 +2,16 @@
 
 namespace App\Mail;
 
+use App\Models\Transaction;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class TestHelloEMail extends Mailable
+class TransactionEmail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $transaction;
+    private $transaction;
 
     /**
      * Create a new message instance.
@@ -29,6 +30,6 @@ class TestHelloEMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.testEmails', ['transaction' => $this->transaction]);
+        return $this->view('mail.receipt-email', ['transaction' => $this->transaction]);
     }
 }

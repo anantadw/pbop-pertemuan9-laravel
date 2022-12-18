@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginBorrowerController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BorrowerController;
 use App\Http\Controllers\TransactionController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,14 +20,21 @@ use App\Http\Controllers\TransactionController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function() {
     // return view('welcome');
     return redirect('login');
 });
 
+Route::get('/login/admin', function() {
+    return view('auth.login-admin');
+})->middleware('guest')->name('login-admin');
+
+Route::post('/login-borrower', [LoginBorrowerController::class, 'login'])->middleware('guest')->name('login-borrower');
+Route::post('/logout-borrower', [LoginBorrowerController::class, 'logout'])->middleware('auth:borrower')->name('logout-borrower');
+
 Auth::routes();
 
-Route::middleware(['auth'])->group(function() {
+Route::prefix('admin')->middleware(['auth:web'])->group(function() {
     Route::get('/dashboard', function() {
         return view('home');
     })->name('home');
@@ -39,4 +50,9 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/transactions/return/{id}', [TransactionController::class, 'return'])->name('transactions.return');
     Route::post('/transactions/return/{id}', [TransactionController::class, 'finishTransaction'])->name('transactions.finish');
     // Route::get('/sending-queue-emails', [TestQueueEmails::class, 'sendTestEmails']);
+});
+
+Route::prefix('borrower')->middleware(['auth:borrower'])->group(function() {
+    Route::get('/index', [BorrowerController::class, 'index'])->name('borrower.index');
+    Route::get('/history', [BorrowerController::class, 'history'])->name('borrower.history');
 });

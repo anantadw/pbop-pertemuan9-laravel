@@ -231,17 +231,17 @@ return [
         // ],
         [
             'text' => 'Dashboard',
-            'url' => '/dashboard',
+            'url' => '/admin/dashboard',
             'icon' => 'fas fa-tachometer-alt mr-2'
         ],
         [
             'text' => 'Books',
-            'url' => '/books',
+            'url' => '/admin/books',
             'icon' => 'fa fa-book mr-2'
         ],
         [
             'text' => 'Transaction',
-            'url' => '/transactions',
+            'url' => '/admin/transactions',
             'icon' => 'fa fa-people-arrows'
         ]
     ],

@@ -21,7 +21,7 @@ class CreateBorrowersTable extends Migration
             $table->string('nomor_telepon', 13)->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->boolean('is_verified');
+            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
     }

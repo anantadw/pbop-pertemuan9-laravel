@@ -27,6 +27,14 @@ class DatabaseSeeder extends Seeder
             'nomor_telepon' => '082133445678'
         ]);
         Book::factory(2000)->create();
-        Borrower::factory(10)->create();
+        // Borrower::create([
+        //     'nama_peminjam' => 'Peminjam 1',
+        //     'nik' => '1234567890123456',
+        //     'nim' => '211511999',
+        //     'nomor_telepon' => '081234567899',
+        //     'email' => 'anantadesta.public@gmail.com',
+        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        //     'is_verified' => true
+        // ]);
     }
 }

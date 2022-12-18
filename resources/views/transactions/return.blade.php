@@ -15,33 +15,29 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="peminjam">Nama Peminjam</label>
-                            <input type="text" class="form-control @error('peminjam') is-invalid @enderror" id="peminjam" placeholder="Masukkan nama peminjam" name="peminjam" readonly value="{{ $transaction->nama_peminjam }}">
+                            <input type="text" class="form-control" id="peminjam" placeholder="Masukkan nama peminjam" name="peminjam" readonly value="{{ $transaction->borrower->nama_peminjam }}">
                         </div>
                         <div class="form-group">
-                            <label for="peminjam">NIK</label>
-                            <input type="text" class="form-control @error('nik') is-invalid @enderror" id="nik" placeholder="Masukkan NIK peminjam" name="nik" readonly value="{{ $transaction->nik }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="peminjam">NIM (Jika Mahasiswa)</label>
-                            <input type="text" class="form-control @error('nim') is-invalid @enderror" id="nim" placeholder="Masukkan NIM peminjam" name="nim" readonly value="{{ $transaction->nim }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="peminjam">Email</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Masukkan email peminjam" name="email" readonly value="{{ $transaction->email }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="peminjam">Nomor telepon</label>
-                            <input type="text" class="form-control @error('nomor_telepon') is-invalid @enderror" id="nomor_telepon" placeholder="Masukkan nomor telepon peminjam" name="nomor_telepon" readonly value="{{ $transaction->nomor_telepon }}">
+                            <label>Buku yang dipinjam</label>
+                            @foreach ($transaction->books as $book)
+                                <input type='text' class='form-control mb-2' id='buku{{ $loop->index }} name='buku[]' readonly value='{{ $book->id . ' | ' . $book->judul }}'>
+                            @endforeach
                         </div>
                         <div class="form-group mt-3" id="book-input"></div>
                         <div class="form-group">
-                            <label for="peminjam">Tanggal Pinjam</label>
-                            <input type="date" class="form-control @error('tgl_pinjam') is-invalid @enderror" id="tgl_pinjam" placeholder="Masukkan tanggal pinjam" name="tgl_pinjam" readonly value="{{ $transaction->tanggal_pinjam }}">
+                            <label for="tgl_pinjam">Tanggal Pinjam</label>
+                            <input type="date" class="form-control" id="tgl_pinjam" placeholder="Masukkan tanggal pinjam" name="tgl_pinjam" readonly value="{{ $transaction->tanggal_pinjam }}">
                         </div>
                         <div class="form-group">
-                            <label for="peminjam">Tanggal Dikembalikan</label>
-                            <input type="date" class="form-control @error('tgl_dikembalikan') is-invalid @enderror" id="tgl_dikembalikan" placeholder="Masukkan tanggal dikembalikan" name="tgl_dikembalikan"  value="{{ old('tanggal_dikembalikan') }}">
-                            @error('tgl_dikembalikan') <span class="text-danger">{{$message}}</span> @enderror
+                            <label for="tgl_kembali">Tanggal Dikembalikan</label>
+                            <input type="date" class="form-control" id="tgl_kembali" placeholder="Masukkan tanggal dikembalikan" name="tgl_kembali"  value="{{ date('Y-m-d') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="denda">Denda</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Rp</span>
+                                <input type="text" class="form-control" readonly id="denda">
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -62,29 +58,11 @@
 
 @push('js')
     <script>
-        let number = 1;
+        const tanggal_pinjam = new Date($('#tgl_pinjam').val());
+        const tanggal_kembali = new Date($('#tgl_kembali').val());
+        console.log(tanggal_pinjam)
+        console.log(tanggal_kembali)
+        console.log(tanggal_kembali - tanggal_pinjam)
 
-        $(document).ready(function() {
-            $('#add-book-input').click(function() {
-                $('#book-input').append(`<div class='row mb-3' id='input${number}'>
-                                <div class='col-6'>
-                                    <input type='text' class='form-control @error('buku[]') is-invalid @enderror' id='buku${number}' placeholder='ID Buku' name='buku[]' value='{{old('buku[]')}}'>
-                                    @error('buku[]') <span class='text-danger'>{{$message}}</span> @enderror
-                                </div>
-                                <div class='col-2'>
-                                    <button type='button' class='btn btn-danger d-block w-100 delete-book' id='delete${number}'>Hapus</button>
-                                </div>
-                            </div>`);
-                number += 1;
-                (number === 4) ?  $('#add-book-input').hide() :  $('#add-book-input').show();
-            });
-        });
-
-        $(document).on('click', '.delete-book', function() {
-            const inputId = $(this).parent().parent().attr('id');
-            $('#' + inputId).remove();
-            number -= 1;
-            (number === 4) ?  $('#add-book-input').hide() :  $('#add-book-input').show();
-        });
     </script>
 @endpush

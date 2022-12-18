@@ -14,29 +14,9 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="peminjam">Nama Peminjam</label>
-                            <input type="text" class="form-control @error('peminjam') is-invalid @enderror" id="peminjam" placeholder="Masukkan nama peminjam" name="peminjam" value="{{old('peminjam')}}">
+                            <label for="peminjam">ID Peminjam</label>
+                            <input type="text" class="form-control @error('peminjam') is-invalid @enderror" id="peminjam" placeholder="Masukkan ID peminjam" name="peminjam" value="{{old('peminjam')}}">
                             @error('peminjam') <span class="text-danger">{{$message}}</span> @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="peminjam">NIK</label>
-                            <input type="text" class="form-control @error('nik') is-invalid @enderror" id="nik" placeholder="Masukkan NIK peminjam" name="nik" value="{{old('nik')}}">
-                            @error('nik') <span class="text-danger">{{$message}}</span> @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="peminjam">NIM (Jika Mahasiswa)</label>
-                            <input type="text" class="form-control @error('nim') is-invalid @enderror" id="nim" placeholder="Masukkan NIM peminjam" name="nim" value="{{old('nim')}}">
-                            @error('nim') <span class="text-danger">{{$message}}</span> @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="peminjam">Email</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Masukkan email peminjam" name="email" value="{{old('email')}}">
-                            @error('email') <span class="text-danger">{{$message}}</span> @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="peminjam">Nomor telepon</label>
-                            <input type="text" class="form-control @error('nomor_telepon') is-invalid @enderror" id="nomor_telepon" placeholder="Masukkan nomor telepon peminjam" name="nomor_telepon" value="{{old('nomor_telepon')}}">
-                            @error('nomor_telepon') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <p class="font-weight-bold d-inline-block mr-2">Buku</p>
                         <button class="btn btn-secondary" type="button" id="add-book-input">
@@ -45,7 +25,7 @@
                         <div class="form-group mt-3" id="book-input"></div>
                         <div class="form-group">
                             <label for="peminjam">Tanggal Pinjam</label>
-                            <input type="date" class="form-control @error('tgl_pinjam') is-invalid @enderror" id="tgl_pinjam" placeholder="Masukkan tanggal pinjam" name="tgl_pinjam" value="{{old('tgl_pinjam')}}">
+                            <input type="date" class="form-control @error('tgl_pinjam') is-invalid @enderror" id="tgl_pinjam" placeholder="Masukkan tanggal pinjam" name="tgl_pinjam" value="{{ date('Y-m-d') }}">
                             @error('tgl_pinjam') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                     </div>

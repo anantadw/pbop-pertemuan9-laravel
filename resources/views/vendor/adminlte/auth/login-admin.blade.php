@@ -19,10 +19,10 @@
 @endif
 
 {{-- @section('auth_header', __('adminlte::adminlte.login_message')) --}}
-@section('auth_header', 'Please sign in to access.')
+@section('auth_header', 'Please sign in to access as Admin.')
 
 @section('auth_body')
-    <form action="{{ route('login-borrower') }}" method="post" autocomplete="off">
+    <form action="{{ $login_url }}" method="post" autocomplete="off">
         @csrf
 
         {{-- Email field --}}
@@ -86,20 +86,20 @@
 
 @section('auth_footer')
     {{-- Password reset link --}}
-    {{-- @if($password_reset_url)
+    @if($password_reset_url)
         <p class="my-0">
             <a href="{{ $password_reset_url }}">
                 {{ __('adminlte::adminlte.i_forgot_my_password') }}
             </a>
         </p>
-    @endif --}}
+    @endif
 
     {{-- Register link --}}
-    @if($register_url)
+    {{-- @if($register_url)
         <p class="my-0">
             <a href="{{ $register_url }}">
                 {{ __('adminlte::adminlte.register_a_new_membership') }}
             </a>
         </p>
-    @endif
+    @endif --}}
 @stop

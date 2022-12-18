@@ -80,29 +80,4 @@
 
 @push('js')
     {{ $dataTable->scripts() }}
-    <script>
-        $(document).ready(function() {
-            $('#btnOpenSaltB').click(function() {
-                Swal.fire(
-                    'Good job!',
-                    'You clicked the button!',
-                    'success'
-                );
-            });
-
-            var Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000
-            });
-
-            $('#btnOpenSaltC').click(function() {
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-                });
-            });
-        })
-    </script>
 @endpush

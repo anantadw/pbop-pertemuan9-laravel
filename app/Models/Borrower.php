@@ -4,19 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Notifications\Notifiable;
 
-class Borrower extends Authenticatable implements MustVerifyEmail
+class Borrower extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
+
+    protected $guard = 'borrower';
 
     /**
-     * The attributes that should be cast to native types.
+     * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $casts = [
-        'is_verified' => 'boolean',
+    protected $fillable = [
+        'nama_peminjam',
+        'nik',
+        'nim',
+        'nomor_telepon',
+        'email',
+        'password',
     ];
 
     /**
@@ -26,7 +33,16 @@ class Borrower extends Authenticatable implements MustVerifyEmail
      */
     protected $hidden = [
         'password',
-        'is_verified',
+        'email_verified_at',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
     ];
 
     /**

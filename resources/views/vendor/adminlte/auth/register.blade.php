@@ -14,13 +14,13 @@
 @section('auth_header', __('adminlte::adminlte.register_message'))
 
 @section('auth_body')
-    <form action="{{ $register_url }}" method="post">
+    <form action="{{ $register_url }}" method="post" autocomplete="off">
         @csrf
 
         {{-- Name field --}}
         <div class="input-group mb-3">
-            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                   value="{{ old('name') }}" placeholder="{{ __('adminlte::adminlte.full_name') }}" autofocus>
+            <input type="text" name="nama_peminjam" class="form-control @error('nama_peminjam') is-invalid @enderror"
+                   value="{{ old('nama_peminjam') }}" placeholder="Nama" autofocus>
 
             <div class="input-group-append">
                 <div class="input-group-text">
@@ -28,7 +28,61 @@
                 </div>
             </div>
 
-            @error('name')
+            @error('nama_peminjam')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+
+        {{-- NIM field --}}
+        <div class="input-group mb-3">
+            <input type="text" name="nim" class="form-control @error('nim') is-invalid @enderror"
+                   value="{{ old('nim') }}" placeholder="NIM (Jika mahasiswa)">
+
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-id-card"></span>
+                </div>
+            </div>
+
+            @error('nim')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+
+        {{-- NIK field --}}
+        <div class="input-group mb-3">
+            <input type="text" name="nik" class="form-control @error('nik') is-invalid @enderror"
+                   value="{{ old('nik') }}" placeholder="NIK">
+
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-id-card"></span>
+                </div>
+            </div>
+
+            @error('nik')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+
+        {{-- Phone number field --}}
+        <div class="input-group mb-3">
+            <input type="text" name="nomor_telepon" class="form-control @error('nomor_telepon') is-invalid @enderror"
+                   value="{{ old('nomor_telepon') }}" placeholder="Nomor telepon">
+
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-phone-square-alt"></span>
+                </div>
+            </div>
+
+            @error('nomor_telepon')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>

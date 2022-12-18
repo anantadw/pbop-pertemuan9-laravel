@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <form action="{{ route('books.store') }}" method="post">
+    <form action="{{ route('books.store') }}" method="post" autocomplete="off">
         @csrf
         <div class="row justify-content-center">
             <div class="col-lg-6">

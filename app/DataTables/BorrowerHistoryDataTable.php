@@ -3,10 +3,13 @@
 namespace App\DataTables;
 
 use App\Models\Transaction;
+use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
+use Yajra\DataTables\Html\Editor\Editor;
+use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class TransactionsDataTable extends DataTable
+class BorrowerHistoryDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -19,17 +22,14 @@ class TransactionsDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('action', function ($row) {
-                $actionButton = '<a href="' . route('transactions.return', $row) . '" class="btn btn-info mb-2 mb-xl-0">
-                                    <i class="fas fa-check-square mr-1"></i>
-                                    Pengembalian
+                $actionButton = '<a href="" class="btn btn-info mb-2 mb-xl-0">
+                                    <i class="fas fa-info mr-1"></i>
+                                    Detail
                                 </a>';
 
                 return $actionButton;
             })
-            ->editColumn('nama_peminjam', function (Transaction $transaction) {
-                return $transaction->borrower->nama_peminjam;
-            })
-            ->editColumn('status', function(Transaction $transaction) {
+            ->editColumn('status', function (Transaction $transaction) {
                 if ($transaction->status == true) {
                     $badge = '<span class="badge bg-success text-bg-success">Dikembalikan</span>';
                 } else {
@@ -37,15 +37,6 @@ class TransactionsDataTable extends DataTable
                 }
 
                 return $badge;
-            })
-            ->editColumn('action', function(Transaction $transaction) {
-                
-                $actionButton = '<a href="' . route('transactions.return', $transaction->id) . '" class="btn btn-info mb-2 mb-xl-0">
-                                        <i class="fas fa-check-square mr-1"></i>
-                                        Pengembalian
-                                    </a>';
-
-                return $actionButton;
             })
             ->rawColumns(['status', 'action']);
     }
@@ -58,7 +49,7 @@ class TransactionsDataTable extends DataTable
      */
     public function query(Transaction $model)
     {
-        return $model->newQuery()->with('borrower');
+        return $model->newQuery()->where('borrower_id', auth()->user()->id);
     }
 
     /**
@@ -69,11 +60,11 @@ class TransactionsDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('transactions-table')
+                    ->setTableId('borrowerhistory-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     // ->dom('Bfrtip')
-                    ->orderBy(0);
+                    ->orderBy(1);
                     // ->buttons(
                     //     Button::make('create'),
                     //     Button::make('export'),
@@ -92,15 +83,14 @@ class TransactionsDataTable extends DataTable
     {
         return [
             Column::make('id'),
-            Column::make('nama_peminjam'),
-            Column::make('status'),
             Column::make('tanggal_pinjam'),
             Column::make('tanggal_kembali'),
+            Column::make('status'),
             Column::computed('action')
-                ->exportable(false)
-                ->printable(false)
-                ->width(350)
-                ->addClass('text-center'),
+                  ->exportable(false)
+                  ->printable(false)
+                  ->width(60)
+                  ->addClass('text-center'),
         ];
     }
 
@@ -111,6 +101,6 @@ class TransactionsDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Transactions_' . date('YmdHis');
+        return 'BorrowerHistory_' . date('YmdHis');
     }
 }

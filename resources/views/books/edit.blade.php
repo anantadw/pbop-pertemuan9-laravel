@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <form action="{{ route('books.update', $book->id) }}" method="post">
+    <form action="{{ route('books.update', $book->id) }}" method="post" autocapitalize="off">
         @csrf
         @method('PUT')
         <div class="row justify-content-center">

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Borrower;
 use App\Providers\RouteServiceProvider;
-use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -29,7 +29,8 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/borrower/index';
 
     /**
      * Create a new controller instance.
@@ -50,8 +51,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'nama_peminjam' => ['required', 'string', 'max:50'],
+            'nim' => ['nullable', 'digits:9'],
+            'nik' => ['required', 'digits:16'],
+            'nomor_telepon' => ['required', 'digits_between:10,13'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:borrowers'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -64,8 +68,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        return Borrower::create([
+            'nama_peminjam' => $data['nama_peminjam'],
+            'nim' => $data['nim'],
+            'nik' => $data['nik'],
+            'nomor_telepon' => $data['nomor_telepon'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

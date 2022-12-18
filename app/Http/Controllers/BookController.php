@@ -60,7 +60,7 @@ class BookController extends Controller
             $book->tahun_terbit = $request->post('tahun_terbit');
             $book->jumlah_buku = $request->post('jumlah_buku');
             $book->deskripsi = $request->post('deskripsi');
-            $book->gambar = '';
+            $book->gambar = 'default.jpg';
             $book->save();
 
             return redirect()->route('books.index')->with('success_message', 'Buku berhasil ditambahkan!');
@@ -122,7 +122,6 @@ class BookController extends Controller
             Log::error($e->getMessage());
             return redirect()->route('books.index')->with('error_message', 'Terjadi kesalaham. Buku gagal diupdate!');
         }
-
     }
 
     /**
@@ -145,7 +144,7 @@ class BookController extends Controller
 
         $mpdf = new \Mpdf\Mpdf();
         $html = '';
-        $data = Book::limit(100)->get();
+        $data = Book::get(['id', 'judul', 'pengarang', 'tahun_terbit', 'jumlah_buku']);
         // return view('books.pdf', [
         //     'books' => $data
         // ]);
