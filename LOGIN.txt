@@ -1,0 +1,5 @@
+Untuk login sebagai admin, masuk ke halaman '/login/admin'
+Masukkan email: admin@gmail.com
+Masukkan password: password
+
+Untuk login sebagai user, dapat melakukan registrasi dahulu.
